@@ -3,6 +3,7 @@ import { PORT } from "./secret";
 import rootRoutes from "./routes";
 import { PrismaClient } from "@prisma/client";
 import { errorMiddleware } from "./middleware/errors";
+import { SignupSchema } from "./schema/users";
 
 const app:Express = express();
 app.use(express.json())
