@@ -4,7 +4,7 @@ import { ErrorCode } from "../exceptions/root";
 import { User } from "@prisma/client";
 
 export const adminMiddleware = async (
-  req: Request &{user?:User},
+  req: Request & { user?: User },
   res: Response,
   next: NextFunction
 ) => {
