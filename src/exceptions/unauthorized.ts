@@ -1,7 +1,7 @@
 import { ErrorCode, HttpException } from './root';
 
-export class UnprocessableEntity extends HttpException{
+export class UnauthorizedException extends HttpException{
     constructor(message:string,errorCode:ErrorCode){
-        super(message,errorCode,422,null);
+        super(message,errorCode,401,null);
     }
 }

@@ -1,9 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, RequestHandler, Response } from "express";
 import { ErrorCode, HttpException } from "./exceptions/root";
 import { InternalException } from "./exceptions/internal-exception";
 
-export const errorHandler = (method: Function) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (
+  method: (req: Request, res: Response, next: NextFunction) => Promise<void>
+): RequestHandler => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await method(req, res, next);
     } catch (error: any) {
@@ -17,7 +19,7 @@ export const errorHandler = (method: Function) => {
           ErrorCode.INTERNAL_EXCEPTION
         );
       }
-      next(exception);
+      next(exception); 
     }
   };
 };
